@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{data.title}}</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/homepage.css') }}">
+</head>
+
+<body>
+    <div>
+        <div class="dropdown">
+            <button class="dropbtn">Hello, {{username}}
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="{{url_for('logout')}}">Log out</a>
+            </div>
+        </div>
+    </div>
+    <h1>BOOK REVIEWER</h1>
+    <div>
+        <form class="searchbar" action="{{url_for('home')}}" style="max-width: 50%;margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 30px;
+        margin-top: 10px;" method="post">
+            <input type="text" placeholder="Search.." name="search">
+            <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+    </div>
+
+    <h2 class="message">{{message}}</h2>
+
+    <div class="infor">
+        <h2>{{data.title}}</h2>
+        <h4>by {{data.author}} in {{data.year}}</h4>
+        <h5>{{data.isbn}}</h5>
+    </div>
+    <div class="gr_rating">
+        <h2>RATING</h2>
+        <h3>{{average_rating}}</h3>
+        <h2>REVIEWED</h2>
+        <h3>{{work_ratings_count}}</h3>
+    </div>
+    <div class="reviewspace">
+        <ul>
+            {%for writter in reviews%}
+            <li>
+                <h3>{{writter.username}} <span>rating: {{writter.rating}}/5</span> </h3>
+                <h4>{{writter.review}}</h4>
+            </li>
+            {%endfor%}
+        </ul>
+    </div>
+    <div class="reviewform">
+        <form action="{{url_for('bookpage',isbn=data.isbn)}}" method="post">
+            <label for="rate">rate</label>
+            <select name="rating" id="rate">
+                <option value="" disabled selected>your rating</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+            <textarea name="review" id="reviewarea" cols="80" rows="3"></textarea>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,6 @@
+cachelib==0.1
+Werkzeug==1.0.0
+Flask
+Flask-Session
+psycopg2-binary
+SQLAlchemy

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Book Reviewer</title>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/homepage.css') }}">
+</head>
+
+<body>
+    <div>
+        <div class="dropdown">
+            <button class="dropbtn">Hello, {{username}}
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="{{url_for('logout')}}">Log out</a>
+            </div>
+        </div>
+    </div>
+    <h1>BOOK REVIEWER</h1>
+    <div>
+        <form class="searchbar" action="{{url_for('home')}}" style="max-width: 50%;margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 30px;
+        margin-top: 10px;" method="post">
+            <input type="text" placeholder="Search.." name="search">
+            <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+    </div>
+
+    <h2 class="message">{{message}}</h2>
+
+    <div class="books">
+        <ol>
+            {%for data in result%}
+            <li><a href="/isbn/{{data.isbn}}">
+                    <h3>{{data.title}}</h3>
+                </a>
+                by {{data.author}} in {{data.year}}
+                <h6>{{data.isbn}}</h6>
+            </li>
+            {%endfor%}
+        </ol>
+    </div>
+
+
+
+</body></html>
