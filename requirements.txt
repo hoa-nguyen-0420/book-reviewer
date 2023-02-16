@@ -1,5 +1,5 @@
 cachelib==0.1
-Werkzeug==1.0.0
+Werkzeug==2.2.3
 Flask
 Flask-Session
 psycopg2-binary
